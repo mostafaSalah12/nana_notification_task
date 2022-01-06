@@ -1,0 +1,44 @@
+# Use root/example as user/password credentials
+version: '3.3'
+
+services:
+
+  rabbit:
+    image: heidiks/rabbitmq-delayed-message-exchange:latest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+  integration_service:
+    restart: unless-stopped
+    depends_on:
+      - mongo
+      - rabbit
+    build: ./integration_service/.
+    ports:
+      - "3001:3001"
+    volumes: 
+      - /app/node_modules
+      - ./integration_service:/usr/app
+    environment:
+      MONGO_URL: mongo
+      RABBITMQ_URL: rabbit
+  notification_service:
+    restart: unless-stopped
+    depends_on:
+      - mongo
+      - rabbit
+      - integration_service
+    build: ./notification_service/.
+    ports:
+      - "3000:3000"
+    volumes: 
+      - /app/node_modules
+      - ./notification_service:/usr/app
+    environment:
+      MONGO_URL: mongo
+      RABBITMQ_URL: rabbit
