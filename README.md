@@ -2,7 +2,7 @@
 
 ## Description
 
-A notification system prototype to handle high load notification messages with mock integration to 3rd parties providers, the system designed to be scalable in production as the admin has the flexibility to deploy as many service as he wants to handle the notifications load, also the system separates the notification service which is interfacing with the client and the integration service which takes more time to handel integration with 3rd parties. Both services are communication throw rabbitmq (queue service), so we can have as many instances as we want without interfacing complexity in communication
+A notification system prototype to handle high load notification messages with mock integration to 3rd parties providers, the system designed to be scalable in production as the admin has the flexibility to deploy as many service as he wants to handle the notifications load, also the system separates the notification service which is interfacing with the client and the integration service which takes more time to handle integration with 3rd parties. Both services are communicating through  rabbitmq (queue service), so we can have as many instances as we want without facing complexity in communication
 
 ### Technology:
  - Nodejs
@@ -41,7 +41,7 @@ The queue service responsible about the communication between the services and r
 ## Services Functionality 
 ### Notification_service
  - Create 3 queues for each notification type (email, sms, and push)
- - Validate send notification request 
+ - Validates send notification request 
  - Check on notification type and template name
  - Check on user info
  - Send message to queue based on notification type
@@ -96,11 +96,11 @@ docker-compose up
  ```
  npm start
  ```
- - the go to integration service and run
+ - then go to notification service and run
  ```
  npm run test
  ```
- - to run test is integration service you don't need to runt notification service, just got to integration service
+ - to run test in integration service you don't need to run notification service, just go to integration service
  ```
  npm run test
  ```
@@ -117,6 +117,12 @@ docker-compose up
  ```
  http://localhost:3000/documentation#/
  ```
+
+ - I've added the messages as template files, because we can localize it based on user language 
+
+ - I've used handlebars to process user info inside html templates
+
+ - to schedule notification I do calculation as schedule.milliseconds - now.milliseconds and add it as delay on message header
   
  
  
