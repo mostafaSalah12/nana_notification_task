@@ -21,7 +21,7 @@ A notification system prototype to handle high load notification messages with m
  - Moment for dates
  
 ## Architecture
-  The system consists of main 4 parts 
+  The system consists of 4 main parts 
  - Inatgration_service 
  - Notification_service
  - Queue Service
