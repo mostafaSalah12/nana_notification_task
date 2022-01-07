@@ -39,7 +39,7 @@ module.exports.postNotification = async (request, h) => {
 module.exports.getNotifications = async (request, h) => {
  
     const {rows, page, _id, user_id, status, notification_type } = request.query
-    const search_query = countructQueryObject(_id, status, user_id, notification_type)
+    const search_query = constructQueryObject(_id, status, user_id, notification_type)
     
     const notification_count = await Notification.countDocuments().exec()
     const notifications = await Notification.find(search_query)
@@ -56,7 +56,7 @@ module.exports.getNotifications = async (request, h) => {
 }
 
 
-function countructQueryObject (_id, status, user_id, notification_type){
+function constructQueryObject (_id, status, user_id, notification_type){
     const search_query = {}
     if(_id){
         search_query._id = _id

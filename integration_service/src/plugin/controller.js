@@ -3,7 +3,7 @@ const { IntegrationLog } = require('../models/integration_log')
 
 module.exports.getAllIntegrationLogs = async (request, h) => {
     const {rows, page, _id, user_id, status, notification_type } = request.query
-    const search_query = countructQueryObject(_id, status, user_id, notification_type)
+    const search_query = constructQueryObject(_id, status, user_id, notification_type)
     const log_count = await IntegrationLog.countDocuments().exec()
     const logs = await IntegrationLog.find(search_query)
          .skip(rows * (page - 1))
@@ -22,7 +22,7 @@ module.exports.getAllIntegrationLogs = async (request, h) => {
          }).code(200)
 }
 
-function countructQueryObject (_id, status, user_id, notification_type){
+function constructQueryObject (_id, status, user_id, notification_type){
     const search_query = {}
     if(_id){
         search_query._id = _id
