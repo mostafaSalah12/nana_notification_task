@@ -4,7 +4,8 @@ mongoose.Promise = global.Promise;
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(`mongodb://${process.env.MONGO_URL}:27017/notification`, {
+        const db_url = process.env.IS_DOCKER ? process.env.MONGO_URL : 'localhost'
+        await mongoose.connect(`mongodb://${db_url}:27017/notification`, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,

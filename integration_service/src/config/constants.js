@@ -1,7 +1,7 @@
-module.exports.EXCHANGE_NAME = 'notifications'
 
+const RABBITMQ_HOST = process.env.IS_DOCKER ? process.env.RABBITMQ_URL : 'localhost'
 module.exports.EXCHANGE_NAME = 'notifications'
-module.exports.RABBITMQ_URL = `amqp://${process.env.RABBITMQ_URL}:5672`
+module.exports.RABBITMQ_URL = `amqp://${RABBITMQ_HOST}:5672`
 module.exports.EXCHANGE_NAME = process.env.EXCHANGE_NAME || 'notifications'
 module.exports.EMAIL_QUEUE = 'notifications.email'
 module.exports.SMS_QUEUE = 'notifications.sms'

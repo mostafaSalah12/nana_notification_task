@@ -151,7 +151,7 @@ describe('ensure notification api working', () => {
         expect(notification.status).toEqual('pending')
 
         //wait again for notification to be sent
-        await new Promise(r => setTimeout(r, 9000))
+        await new Promise(r => setTimeout(r, 11000))
   
          notification = await Notification.findOne({
           _id: payload._id,

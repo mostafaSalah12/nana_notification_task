@@ -27,6 +27,8 @@ services:
     environment:
       MONGO_URL: mongo
       RABBITMQ_URL: rabbit
+      IS_DOCKER: 1
+
   notification_service:
     restart: unless-stopped
     depends_on:
@@ -42,3 +44,5 @@ services:
     environment:
       MONGO_URL: mongo
       RABBITMQ_URL: rabbit
+      IS_DOCKER: 1
+
