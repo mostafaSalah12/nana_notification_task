@@ -107,6 +107,16 @@ docker-compose up
  
  ## notes
  - in databse migration I've added static ids for users and templates, because those should be a sperate microservices but for simplicity I've added them as mock service, but it's not a good practice add static ids to database
+
+ - to get swagger documentation for integration_service go to
+ ```
+ http://localhost:3001/documentation#/
+ ```
+
+ - to get swagger documentation for notification_service go to
+ ```
+ http://localhost:3000/documentation#/
+ ```
   
  
  
